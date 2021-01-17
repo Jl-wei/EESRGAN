@@ -12,7 +12,7 @@
 - Python 3 (Recommend to use Anaconda)
 - PyTorch >= 1.0
 - NVIDIA GPU + CUDA
-- Python packages: `pip install -r path/to/requirement.txt`
+- Python packages: `pip install -r ./requirements.txt`
 ## Training
 `python train.py -c config_GAN.json`
 ## Testing
