@@ -28,8 +28,8 @@ def generate_mod_LR_bic():
     # set data dir
     # directory structure on sunray server pc
     # Need to change later when refactoring, code cleaning and testing.
-    sourcedir = '/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS'
-    savedir = '/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS'
+    sourcedir = '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS'
+    savedir = '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS'
 
     saveHRpath = os.path.join(savedir, 'HR', 'x' + str(mod_scale))
     saveLRpath = os.path.join(savedir, 'LR', 'x' + str(up_scale))
@@ -90,9 +90,9 @@ def generate_mod_LR_bic():
         cv2.imwrite(os.path.join(saveBicpath, filename), image_Bic)
 
 def copy_folder_name_for_valid_image():
-    Dir_HR = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/"
-    Dir_Bic = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/Bic/x4/"
-    Dir_LR = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/"
+    Dir_HR = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/"
+    Dir_Bic = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/Bic/x4/"
+    Dir_LR = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/"
 
     for file in glob.glob("/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved_ESRGAN/val_images/*/"):
         img_file = os.path.basename(file[:-1]+'.jpg')
@@ -165,8 +165,8 @@ refactor it later..
 '''
 def calculate_psnr_ssim():
     dir = "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/"
-    HR_DIR = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/*"
-    bicubic_DIR = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/Bic/x4/valid_img/*"
+    HR_DIR = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/*"
+    bicubic_DIR = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/Bic/x4/valid_img/*"
     img_GT = sorted(glob.glob(HR_DIR+'.jpg'))
     img_final_SR_enhanced_1 = sorted(glob.glob(dir+'/enhanced_SR_images_1/*.png'))
     img_final_SR_enhanced_2 = sorted(glob.glob(dir+'/enhanced_SR_images_2/*.png'))
@@ -290,7 +290,7 @@ def calculate_psnr_ssim():
 
 def calculate_psnr_ssim_ESRGAN():
     dir = "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved_ESRGAN/val_images/*/*"
-    HR_DIR = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/"
+    HR_DIR = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/"
     img_SR = sorted(glob.glob(dir+'_300000.png'))
 
     psnr_SR = 0
@@ -361,7 +361,7 @@ def separate_generated_image_for_test():
         cv2.imwrite(enhanced_SR_Dir, image_enhanced_SR)
         '''
 def calculate_lap_edge():
-    HR_DIR = "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/*"
+    HR_DIR = "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/*"
     dir_save = "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/lap_edges_GT"
     img_GT = sorted(glob.glob(HR_DIR+'.jpg'))
     mean = np.array([0.3442, 0.3708, 0.3476])

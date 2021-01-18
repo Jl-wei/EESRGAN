@@ -24,8 +24,8 @@
     "data_loader": {
         "type": "COWCGANFrcnnDataLoader",
         "args":{
-            "data_dir_GT": "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/",
-            "data_dir_LQ": "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/",
+            "data_dir_GT": "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/",
+            "data_dir_LQ": "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/",
             "batch_size": 2,
             "shuffle": true,
             "validation_split": 0.0,
@@ -86,11 +86,11 @@
         "tensorboard": true
     },
     "path": {
-        "models": "saved/pretrained_models_EESRGAN_FRCNN",
+        "models": "saved/pretrained_models",
         "FRCNN_model": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/FRCNN_model_LR_LR_cowc/",
-        "pretrain_model_G": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/pretrained_models_EESRGAN_FRCNN/170000_G.pth",
-        "pretrain_model_D": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/pretrained_models_EESRGAN_FRCNN/170000_D.pth",
-        "pretrain_model_FRCNN": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/pretrained_models_EESRGAN_FRCNN/170000_FRCNN.pth",
+        "pretrain_model_G": "saved/pretrained_models/170000_G.pth",
+        "pretrain_model_D": "saved/pretrained_models/170000_D.pth",
+        "pretrain_model_FRCNN": "saved/pretrained_models/170000_FRCNN.pth",
         "pretrain_model_FRCNN_LR_LR": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/FRCNN_model_LR_LR_cowc/0_FRCNN_LR_LR.pth",
         "training_state": "saved/training_state",
         "strict_load": true,
@@ -98,18 +98,18 @@
         "val_images": "saved/val_images",
         "output_images": "saved/val_images_cars_new",
         "log": "saved/logs",
-        "data_dir_Valid": "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/valid_img/",
+        "data_dir_Valid": "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/valid_img/",
         "data_dir_F_SR": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/Final_SR_images_test/",
         "data_dir_SR": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/SR_images_test/",
         "data_dir_SR_combined": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/combined_SR_images_216000/",
         "data_dir_E_SR_1": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/enhanced_SR_images_1/",
         "data_dir_E_SR_2": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/enhanced_SR_images_2/",
         "data_dir_E_SR_3": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/enhanced_SR_images_3/",
-        "data_dir_Bic": "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/",
-        "data_dir_LR_train": "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/",
-        "data_dir_Bic_valid": "/home/jlwei/Super_Resolution/Datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/Bic/x4/valid_img/",
+        "data_dir_Bic": "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/",
+        "data_dir_LR_train": "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/",
+        "data_dir_Bic_valid": "/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/Bic/x4/valid_img/",
         "Test_Result_LR_LR_COWC": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/Test_Result_LR_LR_COWC/",
-        "Test_Result_SR": "/home/jlwei/Super_Resolution/Filter_Enhance_Detect/saved/Test_Result_SR/"
+        "Test_Result_SR": "saved/Test_Result_SR/"
     },
     "logger": {
       "print_freq": 100,
