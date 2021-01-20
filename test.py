@@ -13,8 +13,8 @@ python test.py -c config_GAN.json
 
 def main(config):
 
-    data_loader = module_data.COWCGANFrcnnDataLoader('/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/valid_img/',
-    '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/valid_img/', 1, training=False)
+    data_loader = module_data.COWCGANFrcnnDataLoader('/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/',
+    '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/', 1, training=False)
     tester = COWCGANFrcnnTrainer(config=config, data_loader=data_loader)
     tester.test()
 
