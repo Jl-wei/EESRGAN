@@ -11,4 +11,5 @@ kornia
 dataclasses
 Pillow
 pycocotools
+tensorboard
 tensorboardX
