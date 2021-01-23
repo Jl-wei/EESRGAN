@@ -231,7 +231,8 @@ class ESRGAN_EESN_FRCNN_Model(BaseModel):
         self.intermediate_img = self.final_SR
         img_count = self.intermediate_img.size()[0]
         self.intermediate_img = [self.intermediate_img[i] for i in range(img_count)]
-        loss_dict = self.netFRCNN(self.intermediate_img, self.targets)
+        with torch.no_grad():
+            loss_dict = self.netFRCNN(self.intermediate_img, self.targets)
         # import pdb; pdb.set_trace()
         losses = sum(loss for loss in loss_dict.values())
 
@@ -241,9 +242,9 @@ class ESRGAN_EESN_FRCNN_Model(BaseModel):
 
         loss_value = losses_reduced.item()
 
-        torch.autograd.set_detect_anomaly(True)
-        losses.backward()
-        self.optimizer_FRCNN.step()
+        # torch.autograd.set_detect_anomaly(True)
+        # losses.backward()
+        # self.optimizer_FRCNN.step()
 
         # set log
         if step % self.D_update_ratio == 0 and step > self.D_init_iters:
