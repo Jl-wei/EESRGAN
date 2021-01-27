@@ -11,7 +11,7 @@ try:
 except ImportError:
     pass
 
-class PrepareImg():
+class PrepareImage():
     def __init__(self):
         self.up_scale = 4
         self.mod_scale = 4
@@ -99,4 +99,4 @@ class PrepareImg():
 
 
 if __name__ == "__main__":
-    PrepareImg().generate_lr_hr_bic()
+    PrepareImage().generate_lr_hr_bic()
