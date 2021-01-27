@@ -28,10 +28,12 @@ np.random.seed(SEED)
 def main(config):
     #logger = config.get_logger('train')
     # config loggers. Before it, the log will not work
-    setup_logger('base', config['path']['log'], 'train_' + config['name'], level=logging.INFO,
-                      screen=True, tofile=True)
-    setup_logger('val', config['path']['log'], 'val_' + config['name'], level=logging.INFO,
-                      screen=True, tofile=True)
+    setup_logger('base', config['path']['log'], 'train_' + config['name'], 
+                    level=logging.INFO,
+                    screen=True, tofile=True)
+    setup_logger('val', config['path']['log'], 'val_' + config['name'], 
+                    level=logging.INFO,
+                    screen=True, tofile=True)
     logger = logging.getLogger('base')
     #logger.info(dict2str(config))
 
@@ -39,8 +41,10 @@ def main(config):
     # setup data_loader instances
     data_loader = config.init_obj('data_loader', module_data)
     #change later this valid_data_loader using init_obj
-    valid_data_loader = module_data.COWCGANFrcnnDataLoader('/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/',
-    '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/', 1, training = False)
+    valid_data_loader = module_data.COWCGANFrcnnDataLoader(
+        '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/HR/x4/',
+        '/home/jlwei/datasets/COWC/DetectionPatches_256x256/Potsdam_ISPRS/LR/x4/', 
+        1, training = False)
 
     # build model architecture, then print to console
     #model = config.init_obj('arch', module_arch)
@@ -75,6 +79,7 @@ def main(config):
     trainer = COWCFRCNNTrainer(config=config)
     trainer.train()
     '''
+
 if __name__ == '__main__':
     args = argparse.ArgumentParser(description='PyTorch Template')
     args.add_argument('-c', '--config', default=None, type=str,

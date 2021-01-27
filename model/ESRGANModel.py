@@ -5,12 +5,12 @@ import torch.nn as nn
 import model.model as model
 import model.lr_scheduler as lr_scheduler
 from model.loss import GANLoss
-from .gan_base_model import BaseModel
+from .gan_base_model import GANBaseModel
 from torch.nn.parallel import DataParallel
 
 logger = logging.getLogger('base')
 # Taken from ESRGAN BASICSR repository and modified
-class ESRGANModel(BaseModel):
+class ESRGANModel(GANBaseModel):
     def __init__(self, config, device):
         super(ESRGANModel, self).__init__(config, device)
         self.configG = config['network_G']

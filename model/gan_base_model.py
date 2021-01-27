@@ -5,7 +5,7 @@ import torch.nn as nn
 from torch.nn.parallel import DistributedDataParallel
 
 
-class BaseModel():
+class GANBaseModel():
     def __init__(self, config, device):
         self.config = config
         self.device = device

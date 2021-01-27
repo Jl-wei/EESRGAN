@@ -26,30 +26,30 @@ class COWCGANFrcnnTrainer:
 
         self.valid_data_loader = valid_data_loader
         self.do_validation = self.valid_data_loader is not None
+
         n_gpu = torch.cuda.device_count()
         self.device = torch.device('cuda:0' if n_gpu > 0 else 'cpu')
         self.train_size = int(math.ceil(self.data_loader.length / int(config['data_loader']['args']['batch_size'])))
         self.total_iters = int(config['train']['niter'])
         self.total_epochs = int(math.ceil(self.total_iters / self.train_size))
-        print(self.total_epochs)
+        # print(self.total_epochs)
         self.model = ESRGAN_EESN.ESRGAN_EESN_FRCNN_Model(config,self.device)
 
     def test(self):
         self.model.test(self.data_loader, train=False, testResult=True)
 
     def train(self):
-        '''
-        Training logic for an epoch
-        for visualization use the following code (use batch size = 1):
+        # Training logic for an epoch
+        # for visualization use the following code (use batch size = 1):
 
-        category_id_to_name = {1: 'car'}
-        for batch_idx, dataset_dict in enumerate(self.data_loader):
-            if dataset_dict['idx'][0] == 10:
-                print(dataset_dict)
-                visualize(dataset_dict, category_id_to_name) #--> see this method in util
+        # category_id_to_name = {1: 'car'}
+        # for batch_idx, dataset_dict in enumerate(self.data_loader):
+        #     if dataset_dict['idx'][0] == 10:
+        #         print(dataset_dict)
+        #         visualize(dataset_dict, category_id_to_name) #--> see this method in util
 
         #image size: torch.Size([10, 3, 256, 256]) if batch_size = 10
-        '''
+
         logger.info('Number of train images: {:,d}, iters: {:,d}'.format(
                     self.data_loader.length, self.train_size))
         logger.info('Total epochs needed: {:d} for iters {:,d}'.format(
@@ -105,9 +105,9 @@ class COWCGANFrcnnTrainer:
                     self.model.save(current_step)
                     self.model.save_training_state(epoch, current_step)
 
-                #saving SR_images
+                    # saving SR_images
                     for _, (image, targets) in enumerate(self.valid_data_loader):
-                        #print(image)
+                        # print(image)
                         img_name = os.path.splitext(os.path.basename(image['LQ_path'][0]))[0]
                         img_dir = os.path.join(self.config['path']['val_images'], img_name)
                         mkdir(img_dir)
@@ -125,29 +125,28 @@ class COWCGANFrcnnTrainer:
 
                         # Save SR images for reference
                         save_img_path = os.path.join(img_dir,
-                                                     '{:s}_{:d}_SR.png'.format(img_name, current_step))
+                                            '{:s}_{:d}_SR.png'.format(img_name, current_step))
                         save_img(sr_img, save_img_path)
                         # Save GT images for reference
                         save_img_path = os.path.join(img_dir,
-                                                     '{:s}_{:d}_GT.png'.format(img_name, current_step))
+                                            '{:s}_{:d}_GT.png'.format(img_name, current_step))
                         save_img(gt_img, save_img_path)
                         # Save final_SR images for reference
                         save_img_path = os.path.join(img_dir,
-                                                     '{:s}_{:d}_final_SR.png'.format(img_name, current_step))
+                                            '{:s}_{:d}_final_SR.png'.format(img_name, current_step))
                         save_img(final_SR, save_img_path)
                         # Save lap_learned images for reference
                         save_img_path = os.path.join(img_dir,
-                                                     '{:s}_{:d}_lap_learned.png'.format(img_name, current_step))
+                                            '{:s}_{:d}_lap_learned.png'.format(img_name, current_step))
                         save_img(lap_learned, save_img_path)
                         # Save lap images for reference
                         save_img_path = os.path.join(img_dir,
-                                                     '{:s}_{:d}_lap.png'.format(img_name, current_step))
+                                            '{:s}_{:d}_lap.png'.format(img_name, current_step))
                         save_img(lap, save_img_path)
                         # Save lap images for reference
                         save_img_path = os.path.join(img_dir,
-                                                     '{:s}_{:d}_lap_HR.png'.format(img_name, current_step))
+                                            '{:s}_{:d}_lap_HR.png'.format(img_name, current_step))
                         save_img(lap_HR, save_img_path)
-
 
         logger.info('Saving the final model.')
         self.model.save('latest')

@@ -7,7 +7,7 @@ import model.model as model
 import model.lr_scheduler as lr_scheduler
 import kornia
 from model.loss import GANLoss, CharbonnierLoss
-from .gan_base_model import BaseModel
+from .gan_base_model import GANBaseModel
 from torch.nn.parallel import DataParallel, DistributedDataParallel
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from detection.engine import train_one_epoch, evaluate, evaluate_save
@@ -16,7 +16,7 @@ from detection.utils import reduce_dict
 
 logger = logging.getLogger('base')
 # Taken from ESRGAN BASICSR repository and modified
-class ESRGAN_EESN_FRCNN_Model(BaseModel):
+class ESRGAN_EESN_FRCNN_Model(GANBaseModel):
     def __init__(self, config, device):
         super(ESRGAN_EESN_FRCNN_Model, self).__init__(config, device)
         self.configG = config['network_G']
@@ -137,8 +137,9 @@ class ESRGAN_EESN_FRCNN_Model(BaseModel):
         print(self.configS['args']['restarts'])
         self.log_dict = OrderedDict()
 
-        self.print_network()  # print network
+        # self.print_network()  # print network
         self.load()  # load G and D if needed
+
     '''
     The main repo did not use collate_fn and image read has different flags
     and also used np.ascontiguousarray()
@@ -358,7 +359,6 @@ class ESRGAN_EESN_FRCNN_Model(BaseModel):
         if load_path_FRCNN:
             logger.info('Loading model for D [{:s}] ...'.format(load_path_FRCNN))
             self.load_network(load_path_FRCNN, self.netFRCNN, self.config['path']['strict_load'])
-
 
     def save(self, iter_step):
         self.save_network(self.netG, 'G', iter_step)
